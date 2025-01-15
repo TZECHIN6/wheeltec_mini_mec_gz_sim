@@ -23,6 +23,10 @@
       name="gz::sim::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
+    <plugin
+      filename="ignition-gazebo-imu-system"
+      name="ignition::gazebo::systems::Imu">
+    </plugin>
 
     <light type="directional" name="sun">
       <cast_shadows>true</cast_shadows>
@@ -421,6 +425,16 @@
         </sensor>
       </link>
 
+      <link name="imu_link">
+        <pose relative_to="base_link">0 0 0 0 0 0</pose>
+        <sensor name="imu_sensor" type="imu">
+          <always_on>1</always_on>
+          <update_rate>50</update_rate>
+          <visualize>true</visualize>
+          <topic>imu</topic>
+        </sensor>
+      </link>
+
       <!-- joint relationship -->
       <joint name="base_joint" type="fixed">
         <parent>base_link</parent>
@@ -488,6 +502,11 @@
       <joint name="lidar_joint" type="fixed">
         <parent>base_link</parent>
         <child>base_scan</child>
+      </joint>
+
+      <joint name="imu_joint" type="fixed">
+        <parent>base_link</parent>
+        <child>imu_link</child>
       </joint>
 
       <plugin
