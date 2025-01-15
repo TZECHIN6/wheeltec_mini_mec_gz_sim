@@ -314,7 +314,9 @@
         </collision>
       </link>
 
-      <link name="camera_rgb_frame" />
+      <link name="camera_rgb_frame">
+        <pose relative_to="camera_link">0 0 0 -1.570795 0 -1.570795</pose>
+      </link>
 
       <link name="camera_link">
         <pose>0.135 0 0.145 0 -0.523599 0</pose>
