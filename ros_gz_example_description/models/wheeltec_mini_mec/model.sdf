@@ -76,7 +76,7 @@
       </link>
     </model>
 
-    <model name="wheeltec_mini_mec">
+    <model name="wheeltec_mini_mec" xmlns:ignition="http://ignitionrobotics.org/schema">
 
       <link name="base_footprint" />
 
@@ -134,7 +134,7 @@
           </inertia>
         </inertial>
         <visual name='visual'>
-          <pose>0 0 0 1.5707 0 0</pose>
+          <pose>0 0 -0.01625 1.5707 0 0</pose>
           <geometry>
             <!-- <sphere>
               <radius>0.0375</radius>
@@ -144,9 +144,9 @@
               <!-- <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Mecanum
                 lift/tip/files/meshes/mecanum_wheel_right.STL</uri> -->
               <uri>
-                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/mecanum_wheel_right.STL
+                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
               </uri>
-              <scale>0.00075 0.00075 0.00075</scale>
+              <!-- <scale>0.00075 0.00075 0.00075</scale> -->
             </mesh>
           </geometry>
           <material>
@@ -187,7 +187,7 @@
           </inertia>
         </inertial>
         <visual name='visual'>
-          <pose>0 0 0 1.5707 0 0</pose>
+          <pose>0 0 0.01625 1.5707 0 0</pose>
           <geometry>
             <!-- <sphere>
               <radius>0.0375</radius>
@@ -197,9 +197,9 @@
               <!-- <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Mecanum
                 lift/tip/files/meshes/mecanum_wheel_left.STL</uri> -->
               <uri>
-                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/mecanum_wheel_left.STL
+                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/right_rear_wheel_link.STL
               </uri>
-              <scale>0.00075 0.00075 0.00075</scale>
+              <!-- <scale>0.00075 0.00075 0.00075</scale> -->
             </mesh>
           </geometry>
           <material>
@@ -240,7 +240,7 @@
           </inertia>
         </inertial>
         <visual name='visual'>
-          <pose>0 0 0 1.5707 0 0</pose>
+          <pose>0 0 -0.01625 1.5707 0 0</pose>
           <geometry>
             <!-- <sphere>
               <radius>0.0375</radius>
@@ -250,9 +250,9 @@
               <!-- <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Mecanum
                 lift/tip/files/meshes/mecanum_wheel_left.STL</uri> -->
               <uri>
-                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/mecanum_wheel_left.STL
+                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_front_wheel_link.STL
               </uri>
-              <scale>0.00075 0.00075 0.00075</scale>
+              <!-- <scale>0.00075 0.00075 0.00075</scale> -->
             </mesh>
           </geometry>
           <material>
@@ -293,7 +293,7 @@
           </inertia>
         </inertial>
         <visual name='visual'>
-          <pose>0 0 0 1.5707 0 0</pose>
+          <pose>0 0 0.01625 1.5707 0 0</pose>
           <geometry>
             <!-- <sphere>
               <radius>0.0375</radius>
@@ -303,9 +303,9 @@
               <!-- <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Mecanum
                 lift/tip/files/meshes/mecanum_wheel_right.STL</uri> -->
               <uri>
-                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/mecanum_wheel_right.STL
+                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/right_front_wheel_link.STL
               </uri>
-              <scale>0.00075 0.00075 0.00075</scale>
+              <!-- <scale>0.00075 0.00075 0.00075</scale> -->
             </mesh>
           </geometry>
           <material>
