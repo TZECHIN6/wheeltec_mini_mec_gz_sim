@@ -47,7 +47,7 @@ def generate_launch_description():
         launch_arguments={'gz_args': PathJoinSubstitution([
             pkg_project_gazebo,
             'worlds',
-            'diff_drive.sdf'
+            'wheeltec_mini_mec_world.sdf'
         ])}.items(),
     )
 
@@ -76,10 +76,17 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         parameters=[{
-            'config_file': os.path.join(pkg_project_bringup, 'config', 'ros_gz_example_bridge.yaml'),
+            'config_file': os.path.join(pkg_project_bringup, 'config', 'ros_gz_bridge_wheeltec_mini_mec.yaml'),
             'qos_overrides./tf_static.publisher.durability': 'transient_local',
         }],
         output='screen'
+    )
+
+    image_bridge = Node(
+        package='ros_gz_image',
+        executable='image_bridge',
+        arguments=['/camera/image_raw'],
+        output='screen',
     )
 
     return LaunchDescription([
@@ -87,6 +94,7 @@ def generate_launch_description():
         DeclareLaunchArgument('rviz', default_value='true',
                               description='Open RViz.'),
         bridge,
+        image_bridge,
         robot_state_publisher,
-        rviz
+        # rviz
     ])
