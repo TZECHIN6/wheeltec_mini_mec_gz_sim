@@ -96,7 +96,9 @@ angular: {x: 0.0, y: 0.0, z: -0.1}}"
       <self_collide>true</self_collide>
       <pose>0 0 0.35 0 0 0</pose>
       <include merge="true">
-        <uri>model://ros_gz_example_description/models/wheeltec_mini_mec</uri>
+        <uri>
+          model://ros_gz_example_description/models/wheeltec_mini_mec
+        </uri>
       </include>
 
       <plugin
@@ -111,15 +113,24 @@ angular: {x: 0.0, y: 0.0, z: -0.1}}"
         <use_pose_vector_msg>true</use_pose_vector_msg>
         <static_publisher>true</static_publisher>
         <static_update_frequency>1</static_update_frequency>
-      </plugin> -->
+      </plugin>
 
-      <!-- <plugin
+      <plugin
         filename="ignition-gazebo-odometry-publisher-system"
         name="ignition::gazebo::systems::OdometryPublisher">
         <odom_frame>diff_drive/odom</odom_frame>
         <robot_base_frame>diff_drive</robot_base_frame>
       </plugin> -->
     </model>
+
+    <include>
+      <static>true</static>
+      <name>Office</name>
+      <pose>0 0 0 0 0 0</pose>
+      <uri>
+        model://office
+      </uri>
+    </include>
 
   </world>
 </sdf>
