@@ -94,7 +94,7 @@ angular: {x: 0.0, y: 0.0, z: -0.1}}"
 
     <model name="wheeltec_mini_mec">
       <self_collide>true</self_collide>
-      <pose>0 0 0.35 0 0 0</pose>
+      <pose>-9.5323 4.5107 0.35 0 0 3.14157</pose>
       <include merge="true">
         <uri>
           model://ros_gz_example_description/models/wheeltec_mini_mec
