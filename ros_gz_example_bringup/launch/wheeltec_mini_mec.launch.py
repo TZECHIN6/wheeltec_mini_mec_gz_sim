@@ -67,7 +67,7 @@ def generate_launch_description():
     rviz = Node(
        package='rviz2',
        executable='rviz2',
-       arguments=['-d', os.path.join(pkg_project_bringup, 'config', 'diff_drive.rviz')],
+       arguments=['-d', os.path.join(pkg_project_bringup, 'config', 'wheeltec_mini_mec.rviz')],
        condition=IfCondition(LaunchConfiguration('rviz'))
     )
 
@@ -96,5 +96,5 @@ def generate_launch_description():
         bridge,
         image_bridge,
         robot_state_publisher,
-        # rviz
+        rviz
     ])

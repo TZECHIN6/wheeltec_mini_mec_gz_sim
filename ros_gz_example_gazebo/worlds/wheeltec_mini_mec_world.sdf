@@ -106,7 +106,7 @@ angular: {x: 0.0, y: 0.0, z: -0.1}}"
         name="ignition::gazebo::systems::JointStatePublisher">
       </plugin>
 
-      <!-- <plugin
+      <plugin
         filename="ignition-gazebo-pose-publisher-system"
         name="ignition::gazebo::systems::PosePublisher">
         <publish_link_pose>true</publish_link_pose>
@@ -118,9 +118,9 @@ angular: {x: 0.0, y: 0.0, z: -0.1}}"
       <plugin
         filename="ignition-gazebo-odometry-publisher-system"
         name="ignition::gazebo::systems::OdometryPublisher">
-        <odom_frame>diff_drive/odom</odom_frame>
-        <robot_base_frame>diff_drive</robot_base_frame>
-      </plugin> -->
+        <odom_frame>wheeltec_mini_mec/odom</odom_frame>
+        <robot_base_frame>wheeltec_mini_mec</robot_base_frame>
+      </plugin>
     </model>
 
     <include>
