@@ -35,7 +35,7 @@ def generate_launch_description():
         launch_arguments={'gz_args': PathJoinSubstitution([
             project_gazebo_share,
             'worlds',
-            'empty_world.sdf'
+            'wheeltec_mini_mec_world.sdf'
         ])}.items(),
     )
     # Bridge ROS topics and Gazebo messages for establishing communication
