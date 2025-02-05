@@ -582,5 +582,14 @@
       <topic>joint_states</topic>
     </plugin>
 
+    <plugin
+      filename="ignition-gazebo-odometry-publisher-system"
+      name="ignition::gazebo::systems::OdometryPublisher">
+      <odom_topic>/demo/odom</odom_topic>
+      <odom_frame>odom</odom_frame>
+      <tf_topic>/tf</tf_topic>
+      <robot_base_frame>base_link</robot_base_frame>
+    </plugin>
+
   </model>
 </sdf>
