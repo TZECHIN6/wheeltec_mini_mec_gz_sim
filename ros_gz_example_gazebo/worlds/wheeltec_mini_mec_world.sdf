@@ -1,13 +1,4 @@
 <?xml version="1.0"?>
-<!--
-  Try sending commands:
-    gz topic -t "/model/diff_drive/cmd_vel" -m gz.msgs.Twist -p "linear: {x: 1.0}, angular: {z: -0.1}"
-    ros2 topic pub /diff_drive/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0, y: 0.0, z: 0.0},
-angular: {x: 0.0, y: 0.0, z: -0.1}}"
-  Listen to odometry:
-    gz topic -e -t /model/diff_drive/odometry
-    ros2 topic echo /model/diff_drive/odometry
--->
 <sdf version="1.8">
   <world name="wheeltec_mini_mec_world">
     <physics name="1ms" type="ignored">
@@ -92,36 +83,10 @@ angular: {x: 0.0, y: 0.0, z: -0.1}}"
       </link>
     </model>
 
-    <model name="wheeltec_mini_mec">
-      <self_collide>true</self_collide>
-      <pose>-9.5323 4.5107 0.35 0 0 3.14157</pose>
-      <include merge="true">
-        <uri>
-          model://ros_gz_example_description/models/wheeltec_mini_mec
-        </uri>
-      </include>
-
-      <plugin
-        filename="ignition-gazebo-pose-publisher-system"
-        name="ignition::gazebo::systems::PosePublisher">
-        <publish_link_pose>true</publish_link_pose>
-        <use_pose_vector_msg>true</use_pose_vector_msg>
-        <static_publisher>true</static_publisher>
-        <static_update_frequency>1</static_update_frequency>
-      </plugin>
-
-      <plugin
-        filename="ignition-gazebo-odometry-publisher-system"
-        name="ignition::gazebo::systems::OdometryPublisher">
-        <odom_frame>wheeltec_mini_mec/odom</odom_frame>
-        <robot_base_frame>wheeltec_mini_mec</robot_base_frame>
-      </plugin>
-    </model>
-
     <include>
       <static>true</static>
       <name>Office</name>
-      <pose>0 0 0 0 0 0</pose>
+      <pose>-10.2750 4.1250 0 0 0 -3.141592654</pose>
       <uri>
         model://office
       </uri>
