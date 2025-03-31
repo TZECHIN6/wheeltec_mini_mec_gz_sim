@@ -1,6 +1,8 @@
 # wheeltec_mini_mec_gz_sim
 A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive robot.
 
+![Screenshot from 2025-03-31 18-02-49](https://github.com/user-attachments/assets/0bb2d0c8-f3e3-473c-bc0e-9f97a24b8715)
+
 ## Included packages
 
 * `ros_gz_example_description` - holds the sdf description of the simulated system and any other assets.
