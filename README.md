@@ -1,5 +1,5 @@
-# ros_gz_project_template
-A template project integrating ROS 2 and Gazebo simulator.
+# wheeltec_mini_mec_gz_sim
+A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive robot.
 
 ## Included packages
 
@@ -14,16 +14,14 @@ A template project integrating ROS 2 and Gazebo simulator.
 
 ## Install
 
-For using the template with Gazebo Fortress switch to the `fortress` branch of this repository, otherwise use the default branch `main` for Gazebo Harmonic onwards.
+> [!NOTE]
+> The `main` and `fortress` branch of this repository is from the origin template. For a more detailed guide on using this template see [documentation](https://gazebosim.org/docs/latest/ros_gz_project_template_guide).
+>
+> Please switch to `wheeltec_mini_mec` branch for this project before executing below instructions.
 
 ### Requirements
 
-1. Choose a ROS and Gazebo combination https://gazebosim.org/docs/latest/ros_installation
-   Note: If you're using a specific and unsupported Gazebo version with ROS 2, you might need to set the `GZ_VERSION` environment variable, for example:
-
-    ```bash
-    export GZ_VERSION=fortress
-    ```
+1. Install ROS2 Humble and Gazebo Fortress (the gazebo sim version is `Gazebo Sim, version 6.17.0` when writing this)
 
 1. Install necessary tools
 
@@ -31,28 +29,27 @@ For using the template with Gazebo Fortress switch to the `fortress` branch of t
     sudo apt install python3-vcstool python3-colcon-common-extensions git wget
     ```
 
-### Use as template
-Directly `Use this template` and create your project repository on Github.
-
-Or start by creating a workspace and cloning the template repository:
-
-   ```bash
-   mkdir -p ~/template_ws/src
-   cd ~/template_ws/src
-   wget https://raw.githubusercontent.com/gazebosim/ros_gz_project_template/main/template_workspace.yaml
-   vcs import < template_workspace.yaml
-   ```
-
 ## Usage
+
+> [!Warning]
+> The `model.sdf` of wheeltec mini mec robot is depicated and might be replaced by the `model_test.sdf` after further testing.
+
+1. Clone the project to your workspace
+
+    ```bash
+    mkdir -p ~/ros_gz_wheeltec_ws/src
+    cd ~/ros_gz_wheeltec_ws/src
+    git clone https://github.com/TZECHIN6/wheeltec_mini_mec_gz_sim.git
+    ```
 
 1. Install dependencies
 
     ```bash
-    cd ~/template_ws
-    source /opt/ros/<ROS_DISTRO>/setup.bash
+    cd ~/ros_gz_wheeltec_ws
+    source /opt/ros/humble/setup.bash
     sudo rosdep init
     rosdep update
-    rosdep install --from-paths src --ignore-src -r -i -y --rosdistro <ROS_DISTRO>
+    rosdep install --from-paths src --ignore-src -r -i -y --rosdistro humble
     ```
 
 1. Build the project
@@ -64,13 +61,17 @@ Or start by creating a workspace and cloning the template repository:
 1. Source the workspace
 
     ```bash
-    . ~/template_ws/install/setup.sh
+    . ~/ros_gz_wheeltec_ws/install/setup.sh
     ```
 
 1. Launch the simulation
 
     ```bash
-    ros2 launch ros_gz_example_bringup diff_drive.launch.py
+    ros2 launch ros_gz_example_bringup wheeltec_mini_mec.launch.py
     ```
 
-For a more detailed guide on using this template see [documentation](https://gazebosim.org/docs/latest/ros_gz_project_template_guide).
+## Contributions
+
+Any suggestions are welcomed! Feel free to start an issue or PR.
+
+If you found this project is helpful, please give it a star. ☺️
