@@ -158,11 +158,11 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose relative_to="right_wheel_link">0 0 -0.01625 1.5707 0 0</pose>
+        <pose relative_to="right_wheel_link">0 0 0.01625 1.5707 0 0</pose>
         <geometry>
           <mesh>
             <uri>
-              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
+              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/right_rear_wheel_link.STL
             </uri>
           </mesh>
         </geometry>
@@ -221,7 +221,7 @@
         <geometry>
           <mesh>
             <uri>
-              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
+              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_front_wheel_link.STL
             </uri>
           </mesh>
         </geometry>
@@ -276,11 +276,11 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <pose relative_to="right_front_link">0 0 -0.01625 1.5707 0 0</pose>
+        <pose relative_to="right_front_link">0 0 0.01625 1.5707 0 0</pose>
         <geometry>
           <mesh>
             <uri>
-              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
+              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/right_front_wheel_link.STL
             </uri>
           </mesh>
         </geometry>
