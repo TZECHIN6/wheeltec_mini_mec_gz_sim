@@ -36,7 +36,7 @@ def generate_launch_description():
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
 
     # Load the SDF file from "description" package
-    sdf_file  =  os.path.join(pkg_project_description, 'models', 'wheeltec_mini_mec', 'model.sdf')
+    sdf_file  =  os.path.join(pkg_project_description, 'models', 'wheeltec_mini_mec', 'model_test.sdf')
     with open(sdf_file, 'r') as infp:
         robot_desc = infp.read()
 
@@ -76,7 +76,7 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         parameters=[{
-            'config_file': os.path.join(pkg_project_bringup, 'config', 'ros_gz_bridge_wheeltec_mini_mec.yaml'),
+            'config_file': os.path.join(pkg_project_bringup, 'config', 'bridge_config.yaml'),
             'qos_overrides./tf_static.publisher.durability': 'transient_local',
         }],
         output='screen'

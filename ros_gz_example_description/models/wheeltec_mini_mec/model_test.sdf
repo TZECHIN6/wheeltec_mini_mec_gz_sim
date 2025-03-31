@@ -49,15 +49,13 @@
         </inertia>
       </inertial>
       <visual name='visual'>
+        <pose relative_to="base_link">0.0120 0 -0.0505 0 0 0</pose>
         <geometry>
-          <box>
-            <size>0.27 0.185 0.055</size>
-          </box>
-          <!-- <mesh>
-              <uri>
-                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/base_link.STL
-              </uri>
-            </mesh> -->
+          <mesh>
+            <uri>
+              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/base_link.STL
+            </uri>
+          </mesh>
         </geometry>
         <material>
           <ambient>0.5 0.5 1.0 1</ambient>
@@ -101,20 +99,13 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <!-- <pose>0 0 -0.01625 1.5707 0 0</pose> -->
+        <pose relative_to="left_wheel_link">0 0 -0.01625 1.5707 0 0</pose>
         <geometry>
-          <sphere>
-            <radius>0.0375</radius>
-          </sphere>
-          <!-- scale mesh to radius == 0.0375 -->
-          <!-- <mesh>
-              <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Mecanum
-                lift/tip/files/meshes/mecanum_wheel_right.STL</uri>
-              <uri>
-                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
-              </uri>
-              <scale>0.00075 0.00075 0.00075</scale>
-            </mesh> -->
+          <mesh>
+            <uri>
+              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
+            </uri>
+          </mesh>
         </geometry>
         <material>
           <ambient>0.2 0.2 0.2 1</ambient>
@@ -167,20 +158,13 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <!-- <pose>0 0 -0.01625 1.5707 0 0</pose> -->
+        <pose relative_to="right_wheel_link">0 0 -0.01625 1.5707 0 0</pose>
         <geometry>
-          <sphere>
-            <radius>0.0375</radius>
-          </sphere>
-          <!-- scale mesh to radius == 0.0375 -->
-          <!-- <mesh>
-              <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Mecanum
-                lift/tip/files/meshes/mecanum_wheel_right.STL</uri>
-              <uri>
-                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
-              </uri>
-              <scale>0.00075 0.00075 0.00075</scale>
-            </mesh> -->
+          <mesh>
+            <uri>
+              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
+            </uri>
+          </mesh>
         </geometry>
         <material>
           <ambient>0.2 0.2 0.2 1</ambient>
@@ -233,20 +217,13 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <!-- <pose>0 0 -0.01625 1.5707 0 0</pose> -->
+        <pose relative_to="left_front_link">0 0 -0.01625 1.5707 0 0</pose>
         <geometry>
-          <sphere>
-            <radius>0.0375</radius>
-          </sphere>
-          <!-- scale mesh to radius == 0.0375 -->
-          <!-- <mesh>
-              <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Mecanum
-                lift/tip/files/meshes/mecanum_wheel_right.STL</uri>
-              <uri>
-                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
-              </uri>
-              <scale>0.00075 0.00075 0.00075</scale>
-            </mesh> -->
+          <mesh>
+            <uri>
+              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
+            </uri>
+          </mesh>
         </geometry>
         <material>
           <ambient>0.2 0.2 0.2 1</ambient>
@@ -299,20 +276,13 @@
         </inertia>
       </inertial>
       <visual name='visual'>
-        <!-- <pose>0 0 -0.01625 1.5707 0 0</pose> -->
+        <pose relative_to="right_front_link">0 0 -0.01625 1.5707 0 0</pose>
         <geometry>
-          <sphere>
-            <radius>0.0375</radius>
-          </sphere>
-          <!-- scale mesh to radius == 0.0375 -->
-          <!-- <mesh>
-              <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Mecanum
-                lift/tip/files/meshes/mecanum_wheel_right.STL</uri>
-              <uri>
-                model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
-              </uri>
-              <scale>0.00075 0.00075 0.00075</scale>
-            </mesh> -->
+          <mesh>
+            <uri>
+              model://ros_gz_example_description/models/wheeltec_mini_mec/meshes/left_rear_wheel_link.STL
+            </uri>
+          </mesh>
         </geometry>
         <material>
           <ambient>0.2 0.2 0.2 1</ambient>
@@ -360,11 +330,12 @@
 
     <link name='imu_link'>
       <pose relative_to="imu_joint" />
-      <visual name="imu_link_visual">
+      <!-- Commented due to IMU sensor is actually very small and embedded on the control board -->
+      <!-- <visual name="imu_link_visual">
         <geometry>
           <box>
             <size>
-              0.05 0.05 0.05
+              0.03 0.03 0.02
             </size>
           </box>
         </geometry>
@@ -374,13 +345,13 @@
         <geometry>
           <box>
             <size>
-              0.05 0.05 0.05
+              0.03 0.03 0.02
             </size>
           </box>
         </geometry>
-      </collision>
+      </collision> -->
 
-      <xacro:box_inertia m="0.01" w="0.05" d="0.05" h="0.05" />
+      <xacro:box_inertia m="0.01" w="0.03" d="0.03" h="0.02" />
 
       <sensor name="imu_sensor" type="imu">
         <always_on>true</always_on>
@@ -448,7 +419,7 @@
     <joint name="lidar_joint" type="fixed">
       <parent>base_link</parent>
       <child>lidar_link</child>
-      <pose relative_to="base_link">0.0 0.0 0.12 0 0 0</pose>
+      <pose relative_to="base_link">0.058 0 0.0775 0 0 0</pose>
     </joint>
 
     <link name='lidar_link'>
@@ -456,8 +427,8 @@
       <visual name="lidar_link_visual">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.035</length>
+            <radius>0.026</radius>
+            <length>0.0361</length>
           </cylinder>
         </geometry>
       </visual>
@@ -465,13 +436,13 @@
       <collision name="lidar_link_collision">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.035</length>
+            <radius>0.026</radius>
+            <length>0.0361</length>
           </cylinder>
         </geometry>
       </collision>
 
-      <xacro:cylinder_inertia m="0.1" r="0.025" h="0.035" />
+      <xacro:cylinder_inertia m="0.1" r="0.026" h="0.0361" />
 
       <sensor name="lslidar_n10p" type="gpu_lidar">
         <always_on>true</always_on>
@@ -489,7 +460,7 @@
             </horizontal>
           </scan>
           <range>
-            <min>0.08</min>
+            <min>0.1</min>
             <max>10.0</max>
             <resolution>0.015000</resolution>
           </range>
@@ -505,7 +476,7 @@
     <joint name="camera_joint" type="fixed">
       <parent>base_link</parent>
       <child>camera_link</child>
-      <pose relative_to="base_link">0.215 0 0.05 0 0 0</pose>
+      <pose relative_to="base_link">0.12075 0 0.0475 0 0 0</pose>
     </joint>
 
     <link name='camera_link'>
@@ -514,7 +485,7 @@
         <geometry>
           <box>
             <size>
-              0.015 0.130 0.0222
+              0.0285 0.047 0.038
             </size>
           </box>
         </geometry>
@@ -524,13 +495,13 @@
         <geometry>
           <box>
             <size>
-              0.015 0.130 0.0222
+              0.0285 0.047 0.038
             </size>
           </box>
         </geometry>
       </collision>
 
-      <xacro:box_inertia m="0.035" w="0.015" d="0.130" h="0.0222" />
+      <xacro:box_inertia m="0.05" w="0.047" d="0.0285" h="0.038" />
 
       <sensor name="camera" type="camera">
         <always_on>true</always_on>
@@ -540,10 +511,10 @@
         <gz_frame_id>camera_image_frame</gz_frame_id>
         <camera>
           <camera_info_topic>camera/camera_info</camera_info_topic>
-          <horizontal_fov>1.02974</horizontal_fov>
+          <horizontal_fov>1.1257</horizontal_fov>
           <image>
-            <width>1920</width>
-            <height>1080</height>
+            <width>960</width>
+            <height>720</height>
             <format>R8G8B8</format>
           </image>
           <clip>
@@ -562,7 +533,7 @@
       </sensor>
     </link>
 
-    <link name="camera_image_frame" >
+    <link name="camera_image_frame">
       <pose relative_to="camera_image_joint" />
       <xacro:box_inertia m="0.0" w="0.0" d="0.0" h="0.0" />
     </link>
