@@ -101,6 +101,14 @@
     </include>
 
     <include>
+      <static>true</static>
+      <pose>2 0 0.01 0 0 0</pose>
+      <uri>
+        package://ros_gz_example_description/models/aruco_platform
+      </uri>
+    </include>
+
+    <include>
       <pose>0 0 0.1 0 0 0</pose>
       <uri>
         package://ros_gz_example_description/models/wheeltec_mini_mec
