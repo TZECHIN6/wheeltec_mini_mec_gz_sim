@@ -39,7 +39,7 @@ A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive r
     ```bash
     mkdir -p ~/ros2_ws/src
     cd ~/ros2_ws/src
-    git clone https://github.com/TZECHIN6/wheeltec_mini_mec_gz_sim.git
+    git clone https://github.com/TZECHIN6/wheeltec_mini_mec_gz_sim.git -b humble
     ```
 
 1. Install dependencies
