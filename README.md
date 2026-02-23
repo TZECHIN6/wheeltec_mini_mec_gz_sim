@@ -17,9 +17,7 @@ A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive r
 ## Install
 
 > [!NOTE]
-> The `main` and `fortress` branch of this repository is from the origin template. For a more detailed guide on using this template see [documentation](https://gazebosim.org/docs/latest/ros_gz_project_template_guide).
->
-> Please switch to `wheeltec_mini_mec` branch for this project before executing below instructions.
+> Please switch to `humble` branch if you are using ROS2 Humble with Gazebo Fortress.
 
 ### Requirements
 
@@ -39,15 +37,15 @@ A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive r
 1. Clone the project to your workspace
 
     ```bash
-    mkdir -p ~/ros_gz_wheeltec_ws/src
-    cd ~/ros_gz_wheeltec_ws/src
+    mkdir -p ~/ros2_ws/src
+    cd ~/ros2_ws/src
     git clone https://github.com/TZECHIN6/wheeltec_mini_mec_gz_sim.git
     ```
 
 1. Install dependencies
 
     ```bash
-    cd ~/ros_gz_wheeltec_ws
+    cd ~/ros2_ws
     source /opt/ros/humble/setup.bash
     sudo rosdep init
     rosdep update
@@ -63,7 +61,7 @@ A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive r
 1. Source the workspace
 
     ```bash
-    . ~/ros_gz_wheeltec_ws/install/setup.sh
+    source ~/ros2_ws/install/setup.sh
     ```
 
 1. Launch the simulation
@@ -77,3 +75,5 @@ A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive r
 Any suggestions are welcomed! Feel free to start an issue or PR.
 
 If you found this project is helpful, please give it a star. ☺️
+
+_For a more detailed guide on using this template see [documentation](https://gazebosim.org/docs/latest/ros_gz_project_template_guide)._
