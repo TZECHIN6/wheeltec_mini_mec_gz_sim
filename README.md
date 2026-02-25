@@ -68,6 +68,24 @@ A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive r
     ros2 launch ros_gz_example_bringup wheeltec_mini_mec.launch.py
     ```
 
+## Nav2 Demo
+
+1. In a new terminal, source the workspace and launch the Nav2 demo
+
+    ```bash
+    source ~/ros2_ws/install/setup.sh
+    ros2 launch nav2_demo bringup_nav2.launch.py
+    ```
+
+    Initialize the robot pose and set a goal to see the robot navigating in the Gazebo sim.
+
+1. If you would like to try out using `slam_toolbox` to create 2D grip map, you can launch the SLAM demo
+
+    ```bash
+    source ~/ros2_ws/install/setup.sh
+    ros2 launch nav2_demo slam.launch.py
+    ```
+
 ## Contributions
 
 Any suggestions are welcomed! Feel free to start an issue or PR.
