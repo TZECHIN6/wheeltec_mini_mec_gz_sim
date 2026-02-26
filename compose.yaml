@@ -13,6 +13,7 @@ services:
     stdin_open: true
     tty: true
     network_mode: host
+    ipc: host
     deploy:
       resources:
         reservations:
@@ -25,6 +26,6 @@ services:
       - XAUTHORITY=/home/${USER:-user}/.Xauthority
       - QT_X11_NO_MITSHM=1
     volumes:
-      - ../../:/home/${USER:-user}/ros2_ws
+      - ../../src:/home/${USER:-user}/ros2_ws/src
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ${XAUTHORITY}:/home/${USER:-user}/.Xauthority

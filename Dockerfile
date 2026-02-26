@@ -1,6 +1,8 @@
 ARG ROS_DISTRO=jazzy
 FROM ros:$ROS_DISTRO
 
+ENV GZ_VERSION=harmonic
+
 ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -18,13 +20,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME \
     && rm -rf /var/lib/apt/lists/*
 
-# System dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash-completion \
-    && rm -rf /var/lib/apt/lists/*
-
-# ROS2 dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-$ROS_DISTRO-navigation2 \
     ros-$ROS_DISTRO-nav2-bringup \
     ros-$ROS_DISTRO-ros-gz \
@@ -32,6 +29,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-$ROS_DISTRO-rviz2 \
     && rm -rf /var/lib/apt/lists/*
 
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
+
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
 WORKDIR /home/$USERNAME/ros2_ws
+
+CMD ["/bin/bash"]
