@@ -70,6 +70,10 @@ A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive r
 
 ## Nav2 Demo
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b57a6292-5df0-42aa-bb6c-be1c73006d16" alt="nav2_demo">
+</p>
+
 1. In a new terminal, source the workspace and launch the Nav2 demo
 
     ```bash
