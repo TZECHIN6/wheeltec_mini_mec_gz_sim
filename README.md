@@ -90,34 +90,23 @@ A template project integrating ROS 2 and Gazebo simulator with a Mecanum Drive r
     ros2 launch nav2_demo slam.launch.py
     ```
 
-## Docker Environment
+## Docker (Quick Deploy Demo)
 
-1. Build the Docker image using compose file
+1. Build and run the Docker image using compose file
 
     ```bash
     cd ~/ros2_ws/src/wheeltec_mini_mec_gz_sim
     docker compose up --build -d
     ```
 
-1. Start the simulation
-
+1. To shutdown the demo
     ```bash
-    cd ~/ros2_ws/src/wheeltec_mini_mec_gz_sim
-    docker compose exec ros_gz_nav2 bash
-    # Inside the container shell
-    colcon build
-    source install/setup.sh
-    ros2 launch ros_gz_example_bringup wheeltec_mini_mec.launch.py
+    docker compose down
     ```
 
-1. Start Nav2 demo
-
+1. To restart the demo (after build)
     ```bash
-    cd ~/ros2_ws/src/wheeltec_mini_mec_gz_sim
-    docker compose exec ros_gz_nav2 bash
-    # Inside the container shell
-    source install/setup.sh
-    ros2 launch nav2_demo bringup_nav2.launch.py
+    docker compose up -d
     ```
 
 ## Contributions
