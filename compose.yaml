@@ -1,5 +1,24 @@
+x-common: &common
+  network_mode: host
+  ipc: host
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu, graphics, utility, display]
+  environment:
+    - DISPLAY=${DISPLAY}
+    - XAUTHORITY=/home/${USER:-user}/.Xauthority
+    - QT_X11_NO_MITSHM=1
+  volumes:
+    - /tmp/.X11-unix:/tmp/.X11-unix
+    - ${XAUTHORITY}:/home/${USER:-user}/.Xauthority
+
 services:
-  ros_gz_nav2:
+  build_image:
+    image: wheeltec_mini_mec/demo
     build:
       context: ../../
       dockerfile: src/wheeltec_mini_mec_gz_sim/Dockerfile
@@ -7,25 +26,17 @@ services:
         - USERNAME=${USER:-user}
         - USER_UID=${UID:-1000}
         - USER_GID=${GID:-1000}
-    image: ros_gz_nav2
-    container_name: wheeltec_mini_mec_ws
+
+  gz_sim:
+    <<: *common
+    image: wheeltec_mini_mec/demo
     shm_size: "4gb"
-    stdin_open: true
-    tty: true
-    network_mode: host
-    ipc: host
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu, graphics, utility, display]
-    environment:
-      - DISPLAY=${DISPLAY}
-      - XAUTHORITY=/home/${USER:-user}/.Xauthority
-      - QT_X11_NO_MITSHM=1
-    volumes:
-      - ../../src:/home/${USER:-user}/ros2_ws/src
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - ${XAUTHORITY}:/home/${USER:-user}/.Xauthority
+    command: ros2 launch ros_gz_example_bringup wheeltec_mini_mec.launch.py
+
+  nav2_demo:
+    <<: *common
+    image: wheeltec_mini_mec/demo
+    depends_on:
+      gz_sim:
+        condition: service_started
+    command: ros2 launch nav2_demo bringup_nav2.launch.py

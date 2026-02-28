@@ -1,7 +1,7 @@
 ARG ROS_DISTRO=jazzy
 FROM ros:$ROS_DISTRO
 
-ENV GZ_VERSION=harmonic
+SHELL ["/bin/bash", "-c"]
 
 ARG USERNAME=user
 ARG USER_UID=1000
@@ -26,13 +26,26 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-$ROS_DISTRO-nav2-bringup \
     ros-$ROS_DISTRO-ros-gz \
     ros-$ROS_DISTRO-joint-state-publisher-gui \
-    ros-$ROS_DISTRO-rviz2 \
     && rm -rf /var/lib/apt/lists/*
-
-RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
+
+ENV GZ_VERSION=harmonic
+ENV ROS_DISTRO=$ROS_DISTRO
+ENV USER=$USERNAME
+
+RUN mkdir -p /home/$USERNAME/ros2_ws/src
 WORKDIR /home/$USERNAME/ros2_ws
 
-CMD ["/bin/bash"]
+COPY src ./src
+RUN sudo apt update \
+    && rosdep update \
+    && rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y \
+    && source /opt/ros/$ROS_DISTRO/setup.bash \
+    && colcon build \
+    && sudo rm -rf /var/lib/apt/lists/*
+
+COPY src/wheeltec_mini_mec_gz_sim/ws_entrypoint.sh /ws_entrypoint.sh
+ENTRYPOINT ["/ws_entrypoint.sh"]
+CMD ["bash"]
