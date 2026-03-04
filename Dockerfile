@@ -3,12 +3,15 @@ FROM ros:$ROS_DISTRO
 
 SHELL ["/bin/bash", "-c"]
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 # Delete user if it exists in container (e.g Ubuntu Noble: ubuntu)
-RUN if id -u $USER_UID ; then userdel `id -un $USER_UID` ; fi
+RUN if id -u $USER_UID > /dev/null 2>&1; then \
+        userdel -rf $(id -un $USER_UID); fi
 
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
@@ -22,6 +25,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash-completion \
+    ros-$ROS_DISTRO-rmw-cyclonedds-cpp \
     ros-$ROS_DISTRO-navigation2 \
     ros-$ROS_DISTRO-nav2-bringup \
     ros-$ROS_DISTRO-ros-gz \
@@ -45,6 +49,13 @@ RUN sudo apt update \
     && source /opt/ros/$ROS_DISTRO/setup.bash \
     && colcon build \
     && sudo rm -rf /var/lib/apt/lists/*
+
+# Config ROS 2 to use cyclonedds as middleware
+COPY src/wheeltec_mini_mec_gz_sim/cyclonedds_config_file.xml /opt/ros/cyclonedds_config_file.xml
+ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+ENV CYCLONEDDS_URI=file:///opt/ros/cyclonedds_config_file.xml
+
+ENV DEBIAN_FRONTEND=
 
 COPY src/wheeltec_mini_mec_gz_sim/ws_entrypoint.sh /ws_entrypoint.sh
 ENTRYPOINT ["/ws_entrypoint.sh"]
