@@ -1,22 +1,30 @@
+# ===================================
+# Stage: base
+# ===================================
 ARG ROS_DISTRO=jazzy
-FROM ros:$ROS_DISTRO
+FROM ros:$ROS_DISTRO AS base
 
 SHELL ["/bin/bash", "-c"]
+ENV DEBIAN_FRONTEND=noninteractive
 
 ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
+ENV GZ_VERSION=harmonic
+ENV ROS_DISTRO=$ROS_DISTRO
+ENV USER=$USERNAME
+ENV HOME=/home/$USERNAME
+ENV TERM=xterm-256color
+
 # Delete user if it exists in container (e.g Ubuntu Noble: ubuntu)
-RUN if id -u $USER_UID ; then userdel `id -un $USER_UID` ; fi
+RUN if id -u $USER_UID > /dev/null 2>&1 ; then userdel -rf $(id -un $USER_UID) ; fi
 
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    #
-    # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
     && apt-get update && apt-get install -y --no-install-recommends sudo \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && echo "$USERNAME ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME \
     && rm -rf /var/lib/apt/lists/*
 
@@ -28,16 +36,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-$ROS_DISTRO-joint-state-publisher-gui \
     && rm -rf /var/lib/apt/lists/*
 
-# [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
+RUN mkdir -p $HOME/ros2_ws/src
+WORKDIR $HOME/ros2_ws
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> $HOME/.bashrc
 
-ENV GZ_VERSION=harmonic
-ENV ROS_DISTRO=$ROS_DISTRO
-ENV USER=$USERNAME
+# ===================================
+# Stage: development
+# ===================================
+FROM base AS development
+ENV DEBIAN_FRONTEND=
 
-RUN mkdir -p /home/$USERNAME/ros2_ws/src
-WORKDIR /home/$USERNAME/ros2_ws
+ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD ["bash"]
 
+# ===================================
+# Stage: deploy
+# ===================================
+FROM base AS deploy
 COPY src ./src
 RUN sudo apt update \
     && rosdep update \
@@ -46,6 +62,5 @@ RUN sudo apt update \
     && colcon build \
     && sudo rm -rf /var/lib/apt/lists/*
 
-COPY src/wheeltec_mini_mec_gz_sim/ws_entrypoint.sh /ws_entrypoint.sh
-ENTRYPOINT ["/ws_entrypoint.sh"]
+ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["bash"]

@@ -1,3 +1,11 @@
+x-build: &default-build
+  context: ../../
+  dockerfile: src/wheeltec_mini_mec_gz_sim/Dockerfile
+  args:
+    - USERNAME=${USER:-user}
+    - USER_UID=${UID:-1000}
+    - USER_GID=${GID:-1000}
+
 x-common: &common
   network_mode: host
   ipc: host
@@ -12,31 +20,41 @@ x-common: &common
     - DISPLAY=${DISPLAY}
     - XAUTHORITY=/home/${USER:-user}/.Xauthority
     - QT_X11_NO_MITSHM=1
+    - ROS_DOMAIN_ID=64
   volumes:
     - /tmp/.X11-unix:/tmp/.X11-unix
     - ${XAUTHORITY}:/home/${USER:-user}/.Xauthority
 
 services:
-  build_image:
-    image: wheeltec_mini_mec/demo
-    build:
-      context: ../../
-      dockerfile: src/wheeltec_mini_mec_gz_sim/Dockerfile
-      args:
-        - USERNAME=${USER:-user}
-        - USER_UID=${UID:-1000}
-        - USER_GID=${GID:-1000}
-
   gz_sim:
     <<: *common
+    build: *default-build
     image: wheeltec_mini_mec/demo
     shm_size: "4gb"
     command: ros2 launch ros_gz_example_bringup wheeltec_mini_mec.launch.py
 
   nav2_demo:
     <<: *common
+    build: *default-build
     image: wheeltec_mini_mec/demo
     depends_on:
       gz_sim:
         condition: service_started
     command: ros2 launch nav2_demo bringup_nav2.launch.py
+
+  dev_shell:
+    <<: *common
+    build:
+      <<: *default-build
+      target: development
+    image: wheeltec_mini_mec/demo-dev
+    profiles:
+      - development
+    stdin_open: true
+    tty: true
+    working_dir: /home/${USER:-user}/ros2_ws
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${XAUTHORITY}:/home/${USER:-user}/.Xauthority
+      - ../../src:/home/${USER:-user}/ros2_ws/src
+    command: bash
