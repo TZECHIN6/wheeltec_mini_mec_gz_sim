@@ -81,6 +81,13 @@
     </include>
 
     <include>
+      <pose>3.0 0 0.145 1.5707 0 -1.5707</pose>
+      <uri>
+        package://ros_gz_example_description/models/Apriltag36_11_00000
+      </uri>
+    </include>
+
+    <include>
       <pose>0 0 0.1 0 0 0</pose>
       <uri>
         package://ros_gz_example_description/models/wheeltec_mini_mec
