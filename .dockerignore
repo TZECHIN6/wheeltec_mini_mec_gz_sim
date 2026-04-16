@@ -1,6 +1,41 @@
+# Documentation
 README.md
 LICENSE
+
+# Docker files
 Dockerfile
 compose.yaml
+
+# Git
 .git
 .gitignore
+
+# ROS build artifacts
+build/
+install/
+log/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE and editor files
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Cache directories
+.cache/
+.pytest_cache/
+
+# Other common excludes
+.env
+secrets/

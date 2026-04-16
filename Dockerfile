@@ -54,7 +54,7 @@ CMD ["bash"]
 # Stage: deploy
 # ===================================
 FROM base AS deploy
-COPY src ./src
+COPY src $HOME/ros2_ws/src
 RUN sudo apt update \
     && rosdep update \
     && rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y \
