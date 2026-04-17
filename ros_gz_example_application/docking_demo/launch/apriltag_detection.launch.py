@@ -45,8 +45,17 @@ def generate_launch_description():
         output="screen",
     )
 
+    start_dock_pose_publisher_node = Node(
+        package="docking_demo",
+        executable="dock_pose_publisher",
+        name="dock_pose_publisher",
+        parameters=[{"use_sim_time": True}],
+        output="screen",
+    )
+
     ld = LaunchDescription()
 
     ld.add_action(start_apriltag_detection_container)
+    ld.add_action(start_dock_pose_publisher_node)
 
     return ld
