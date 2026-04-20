@@ -510,7 +510,7 @@ docking_server:
     home_dock:
       type: 'wheeltec_mini_mec_dock'
       frame: map
-      pose: [1.5, 4.87, 1.5707]  # x, y, yaw in radians
+      pose: [4.45, 3.0, 3.14159]  # x, y, yaw in radians
 
     controller:
       k_phi: 3.0
