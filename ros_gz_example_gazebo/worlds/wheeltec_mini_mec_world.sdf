@@ -81,7 +81,7 @@
     </include>
 
     <include>
-      <pose>1.12075 0 0.145 1.5707 0 -1.5707</pose>
+      <pose>1.5 4.87 0.15 1.5707 0 0</pose>
       <uri>
         package://ros_gz_example_description/models/Apriltag36_11_00000
       </uri>

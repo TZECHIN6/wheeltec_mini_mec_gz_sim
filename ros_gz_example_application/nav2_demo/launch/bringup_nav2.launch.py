@@ -1,9 +1,6 @@
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import (
-    DeclareLaunchArgument,
-    IncludeLaunchDescription,
-)
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
@@ -79,6 +76,7 @@ ARGUMENTS = [
 def generate_launch_description():
     nav2_bringup_dir = get_package_share_directory("nav2_bringup")
     my_nav2_dir = get_package_share_directory("nav2_demo")
+    docking_demo_dir = get_package_share_directory("docking_demo")
 
     use_sim_time = LaunchConfiguration("use_sim_time")
     params_file = LaunchConfiguration("params_file")
@@ -119,6 +117,15 @@ def generate_launch_description():
         }.items(),
     )
 
+    # Include apriltag detection
+    apriltag_detection_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution(
+                [docking_demo_dir, "launch", "apriltag_detection.launch.py"]
+            )
+        ),
+    )
+
     rviz_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([nav2_bringup_dir, "launch", "rviz_launch.py"])
@@ -135,6 +142,7 @@ def generate_launch_description():
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(nav2_bringup_cmd)
     ld.add_action(costmap_filter_cmd)
+    ld.add_action(apriltag_detection_cmd)
     ld.add_action(rviz_cmd)
 
     return ld
