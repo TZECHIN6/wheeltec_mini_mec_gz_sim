@@ -64,5 +64,7 @@ RUN sudo apt update \
     && colcon build \
     && sudo rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/ros_entrypoint.sh"]
+ENV DEBIAN_FRONTEND=
+
+ENTRYPOINT ["/bin/bash", "-c", "exec $HOME/ros2_ws/src/wheeltec_mini_mec_gz_sim/ws_entrypoint.sh"]
 CMD ["bash"]
