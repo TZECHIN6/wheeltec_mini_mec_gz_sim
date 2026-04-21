@@ -34,6 +34,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-$ROS_DISTRO-nav2-bringup \
     ros-$ROS_DISTRO-ros-gz \
     ros-$ROS_DISTRO-joint-state-publisher-gui \
+    ros-${ROS_DISTRO}-apriltag-ros \
+    ros-${ROS_DISTRO}-image-pipeline \
     && rm -rf /var/lib/apt/lists/*
 
 USER $USERNAME
@@ -62,5 +64,8 @@ RUN sudo apt update \
     && colcon build \
     && sudo rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/ros_entrypoint.sh"]
+ENV DEBIAN_FRONTEND=
+
+COPY src/wheeltec_mini_mec_gz_sim/ws_entrypoint.sh /ws_entrypoint.sh
+ENTRYPOINT ["/ws_entrypoint.sh"]
 CMD ["bash"]
