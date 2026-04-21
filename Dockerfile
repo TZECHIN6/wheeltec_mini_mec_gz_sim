@@ -66,5 +66,6 @@ RUN sudo apt update \
 
 ENV DEBIAN_FRONTEND=
 
-ENTRYPOINT ["/bin/bash", "-c", "exec $HOME/ros2_ws/src/wheeltec_mini_mec_gz_sim/ws_entrypoint.sh"]
+COPY src/wheeltec_mini_mec_gz_sim/ws_entrypoint.sh /ws_entrypoint.sh
+ENTRYPOINT ["/ws_entrypoint.sh"]
 CMD ["bash"]
